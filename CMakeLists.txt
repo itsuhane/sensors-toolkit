@@ -4,7 +4,7 @@ project(sensors-toolkit)
 
 include(CMakeDependentOption)
 
-cmake_dependent_option(SENSORS_BUILD_LIB "..." ON "NOT IOS" OFF)
+set(SENSORS_BUILD_LIB ON CACHE BOOL "...")
 cmake_dependent_option(SENSORS_BUILD_PC "..." ON "NOT IOS" OFF)
 cmake_dependent_option(SENSORS_BUILD_IOS "..." ON "IOS" OFF)
 cmake_dependent_option(SENSORS_BUILD_IOS_APP "..." ON "IOS" OFF)
