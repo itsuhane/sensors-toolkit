@@ -20,8 +20,10 @@ target_include_directories(sensors
         ${CMAKE_CURRENT_SOURCE_DIR}/src/
 )
 
-target_link_libraries(
-    sensors
-    PUBLIC
-        ffmpeg-dep
-)
+if(NOT SENSORS_BUILD_IOS)
+    target_link_libraries(
+        sensors
+        PUBLIC
+            ffmpeg-dep
+    )
+endif()

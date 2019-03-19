@@ -10,12 +10,13 @@ cmake_dependent_option(SENSORS_BUILD_IOS "..." ON "IOS" OFF)
 
 if(SENSORS_BUILD_PC)
     find_package(OpenCV REQUIRED)
-    find_package(FFmpeg COMPONENTS AVCODEC AVUTIL REQUIRED)
-
     add_library(opencv-dep INTERFACE IMPORTED GLOBAL)
     target_include_directories(opencv-dep INTERFACE ${OpenCV_INCLUDE_DIR})
     target_link_libraries(opencv-dep INTERFACE ${OpenCV_LIBS})
+endif()
 
+if(NOT SENSORS_BUILD_IOS)
+    find_package(FFmpeg COMPONENTS AVCODEC AVUTIL REQUIRED)
     add_library(ffmpeg-dep INTERFACE IMPORTED)
     target_include_directories(ffmpeg-dep INTERFACE ${FFMPEG_INCLUDE_DIRS})
     target_link_libraries(ffmpeg-dep INTERFACE ${FFMPEG_LIBRARIES})
