@@ -1,0 +1,4 @@
+# prefix to all iOS app bundle identifiers
+APP_IDENTIFIER_PREFIX="com.company.roam"
+# development team ID for codesigning
+IOS_DEVELOPMENT_TEAM="XXXXXXXXXX"
