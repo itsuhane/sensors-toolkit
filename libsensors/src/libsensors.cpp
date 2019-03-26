@@ -157,6 +157,13 @@ class Sensors::SensorsImpl {
                     h264_decode_payload(timestamp, payload.data(), payload.size());
                 }
             } break;
+            case 0x12: { // gravity reported by device
+                double x, y, z;
+                if (!advance(x, consumed)) goto end_parse;
+                if (!advance(y, consumed)) goto end_parse;
+                if (!advance(z, consumed)) goto end_parse;
+                sensors->on_gravity(timestamp, x, y, z);
+            } break;
             default: {
                 sensors->on_error("unknown data type.");
             } break;

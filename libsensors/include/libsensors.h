@@ -35,6 +35,9 @@ class Sensors {
     virtual void on_gps(double t, double longitude, double latitude, double altitude, double horizontal_accuracy, double vertical_accuracy) {
     }
 
+    virtual void on_gravity(double t, double x, double y, double z) {
+    }
+
     virtual void on_error(const char* msg) {
     }
 };
