@@ -102,7 +102,6 @@ class Pipeline : NSObject, CameraDelegate, MotionDelegate, LocationDelegate, Enc
             data.append($0)
         }
         output?.pipelineDidOutput(data: data)
-        NSLog("ACC: \(timestamp)")
     }
     
     func motionDidMagnetometerUpdate(timestamp: Double, magnetFieldX: Double, magnetFieldY: Double, magnetFieldZ: Double) {

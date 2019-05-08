@@ -18,53 +18,53 @@ set(SWIFT_OBJC_BRIDGING_HEADER ${CMAKE_CURRENT_SOURCE_DIR}/src/Sensors-Bridging-
 set(INFO_PLIST_TEMPLATE ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Info.plist.in)
 
 set(SENSORS_IOS_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/NetworkOutputServerImpl.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/NetworkOutputServerImpl.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/NetworkOutputServer.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/NetworkOutputServer.mm
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/AppDelegate.swift
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/AppUtility.swift
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Camera.swift
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Encoder.swift
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/FileOutput.swift
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Location.swift
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Motion.swift
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/NetworkOutput.swift
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Pipeline.swift
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/VideoToolbox+extensions.swift
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ViewController.swift
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/NetworkOutputServerImpl.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/NetworkOutputServerImpl.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/NetworkOutputServer.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/NetworkOutputServer.mm
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/AppDelegate.swift
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/AppUtility.swift
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/Camera.swift
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/Encoder.swift
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/FileOutput.swift
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/Location.swift
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/Motion.swift
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/NetworkOutput.swift
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/Pipeline.swift
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/VideoToolbox+extensions.swift
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/ViewController.swift
 )
 
 set(SENSORS_IOS_ASSETS
-    ${CMAKE_CURRENT_SOURCE_DIR}/resources/Media.xcassets
+  ${CMAKE_CURRENT_SOURCE_DIR}/resources/Media.xcassets
 )
 
 set(SENSORS_IOS_STORYBOARDS
-    ${CMAKE_CURRENT_SOURCE_DIR}/resources/${LAUNCH_STORYBOARD}.storyboard
-    ${CMAKE_CURRENT_SOURCE_DIR}/resources/${MAIN_STORYBOARD}.storyboard
+  ${CMAKE_CURRENT_SOURCE_DIR}/resources/${LAUNCH_STORYBOARD}.storyboard
+  ${CMAKE_CURRENT_SOURCE_DIR}/resources/${MAIN_STORYBOARD}.storyboard
 )
 
 set(SENSORS_IOS_RESOURCES
-    ${SENSORS_IOS_ASSETS}
-    ${SENSORS_IOS_STORYBOARDS}
+  ${SENSORS_IOS_ASSETS}
+  ${SENSORS_IOS_STORYBOARDS}
 )
 
 add_executable(${EXECUTABLE_NAME}
-    MACOSX_BUNDLE
-    ${SWIFT_OBJC_BRIDGING_HEADER}
-    ${SENSORS_IOS_SOURCES}
-    ${SENSORS_IOS_ASSETS}
-    ${SENSORS_IOS_STORYBOARDS}
+  MACOSX_BUNDLE
+  ${SWIFT_OBJC_BRIDGING_HEADER}
+  ${SENSORS_IOS_SOURCES}
+  ${SENSORS_IOS_ASSETS}
+  ${SENSORS_IOS_STORYBOARDS}
 )
 
-target_compile_features(${EXECUTABLE_NAME}
-    PRIVATE
-        cxx_std_17
+target_link_libraries(${EXECUTABLE_NAME}
+  PRIVATE
+    options::modern-cpp
 )
 
 set_target_properties(${EXECUTABLE_NAME} PROPERTIES
-    MACOSX_BUNDLE_INFO_PLIST ${INFO_PLIST_TEMPLATE}
-    RESOURCE "${SENSORS_IOS_RESOURCES}"
+  MACOSX_BUNDLE_INFO_PLIST ${INFO_PLIST_TEMPLATE}
+  RESOURCE "${SENSORS_IOS_RESOURCES}"
 )
 
 set_xcode_property(${EXECUTABLE_NAME} CODE_SIGN_IDENTITY ${CODE_SIGN_IDENTITY} "All")
@@ -76,12 +76,12 @@ set_xcode_property(${EXECUTABLE_NAME} SWIFT_VERSION "4.2" "All")
 set_xcode_property(${EXECUTABLE_NAME} DEBUG_INFORMATION_FORMAT "dwarf-with-dsym" "All")
 set_xcode_property(${EXECUTABLE_NAME} LD_RUNPATH_SEARCH_PATHS "@executable_path/Frameworks" "All")
 if(ENABLE_BITCODE)
-    set_xcode_property(${EXECUTABLE_NAME} ENABLE_BITCODE "YES" "All")
+  set_xcode_property(${EXECUTABLE_NAME} ENABLE_BITCODE "YES" "All")
 else()
-    set_xcode_property(${EXECUTABLE_NAME} ENABLE_BITCODE "NO" "All")
+  set_xcode_property(${EXECUTABLE_NAME} ENABLE_BITCODE "NO" "All")
 endif()
 if(ENABLE_ARC)
-    set_xcode_property(${EXECUTABLE_NAME} CLANG_ENABLE_OBJC_ARC "YES" "All")
+  set_xcode_property(${EXECUTABLE_NAME} CLANG_ENABLE_OBJC_ARC "YES" "All")
 else()
-    set_xcode_property(${EXECUTABLE_NAME} CLANG_ENABLE_OBJC_ARC "NO" "All")
+  set_xcode_property(${EXECUTABLE_NAME} CLANG_ENABLE_OBJC_ARC "NO" "All")
 endif()
