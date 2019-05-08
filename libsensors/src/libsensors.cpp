@@ -10,7 +10,11 @@
 #endif
 #endif
 
-#if !defined(LIBSENSORS_IOS)
+#if defined(ANDROID) || defined(__ANDROID__)
+#define LIBSENSORS_ANDROID
+#endif
+
+#if !defined(LIBSENSORS_IOS) && !defined(LIBSENSORS_ANDROID)
 #define LIBSENSORS_ENABLE_FFMPEG
 #endif
 

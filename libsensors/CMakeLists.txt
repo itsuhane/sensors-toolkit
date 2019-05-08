@@ -3,7 +3,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
 project(libsensors LANGUAGES CXX)
 
 include(SuperBuildDepends)
-if(NOT IOS)
+if(NOT IOS AND NOT ANDROID)
   superbuild_extern(ffmpeg)
 endif()
 
